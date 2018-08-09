@@ -20,7 +20,31 @@ for letter in secretWord:
 
 guessState = []
 guessedLetters = []
-lives = 10
+
+difficultySelect = True
+
+# Difficulty selection
+while difficultySelect == True:
+	print("What difficulty mode would you like to play? [1, 2, 3]")
+	print("1 - Easy\n2 - Medium\n3 - Hard")
+	difficultyMode = int(input())
+	if difficultyMode == 1:
+		print("You selected easy!\n")
+		lives = 18
+		difficultySelect = False
+		continue
+	if difficultyMode == 2:
+		print("You selected medium!\n")
+		lives = 10
+		difficultySelect = False
+		continue
+	if difficultyMode == 3:
+		print("You selected hard!\n")
+		lives = 7
+		difficultySelect = False
+		continue
+	else:
+		print("Invalid input - enter the number corresponding to the difficulty mode!")
 
 while gameOver == False:
 	print("You have " + str(lives) + " lives remaining.\n")
