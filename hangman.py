@@ -1,7 +1,7 @@
 import random
 
 gameOver = False
-print("Hangman Game")
+print("Hangman Game\n\n")
 
 wordList = ["banana", "rectangle", "laptop", "curtains", "skyscraper",
                  "computer", "python", "programming", "facemask", "samurai",
@@ -9,6 +9,7 @@ wordList = ["banana", "rectangle", "laptop", "curtains", "skyscraper",
                  "pythagorean", "blanket", "musket", "warriors", "conditioner"
                  ]
 
+# Use random to pick a random word from the list
 secretWord = random.choice(wordList).lower()
 
 # Create a list and populate it with N '-'
