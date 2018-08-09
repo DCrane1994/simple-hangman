@@ -18,7 +18,7 @@ guessed_word = []
 for letter in secretWord:
 	guessed_word.append("-")
 
-guessState = []
+# Store a history of guessed letters
 guessedLetters = []
 
 difficultySelect = True
@@ -48,7 +48,7 @@ while difficultySelect == True:
 
 while gameOver == False:
 	print("You have " + str(lives) + " lives remaining.\n")
-	print("Current word state:\n")
+	print("Currently guessed:\n")
 	# Strip brackets and commas to print out
 	print(*guessed_word, sep='')
 	print("\nEnter a guess")
