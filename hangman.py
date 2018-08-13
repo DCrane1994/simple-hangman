@@ -1,30 +1,36 @@
 import random
 
 def main():
+	validWord = False
 	gameOver = False
-	print("Hangman Game\n\n")
-
-	wordList = ["banana", "rectangle", "laptop", "curtains", "skyscraper",
-	                 "computer", "python", "programming", "facemask", "samurai",
-	                 "tracksuit", "duvet", "enemies", "stopwatch", "physics",
-	                 "pythagorean", "blanket", "musket", "warriors", "conditioner"
-	                 ]
-
-	# Use random to pick a random word from the list
-	secretWord = random.choice(wordList).lower()
-
-	# Create a list and populate it with N '-'
-	# Where N = length of word
-	guessed_word = []
-	for letter in secretWord:
-		guessed_word.append("-")
-
-	# Store a history of guessed letters
-	guessedLetters = []
-
 	difficultySelect = True
 
-	# Difficulty selection
+	print("Hangman Game\n\n")
+
+	# Open the wordlist
+	f = open("wordlist.txt", "r")
+	# Read the lines
+	wordList = f.readlines()
+	# Strip whitespace, \n, etc
+	wordList = [x.strip() for x in wordList]
+	
+
+	while validWord == False:
+		# Pick a random word from the list
+		secretWord = random.choice(wordList).lower()
+		# If it's more than 5 characters, accept it. If not, pick again
+		if len(secretWord) > 5:
+			validWord = True
+			continue
+    # Create a string of "-" of n length, where n = len(secretWord)
+	guessedWord = []
+	for letter in secretWord:
+		guessedWord.append("-")
+
+    # Store the guessed letters here
+	guessedLetters = []
+
+    # Difficulty selection
 	while difficultySelect == True:
 		print("What difficulty mode would you like to play? [1, 2, 3]")
 		print("1 - Easy\n2 - Medium\n3 - Hard")
@@ -51,7 +57,7 @@ def main():
 		print("You have " + str(lives) + " lives remaining.\n")
 		print("Currently guessed:\n")
 		# Strip brackets and commas to print out
-		print(*guessed_word, sep='')
+		print(*guessedWord, sep='')
 		print("\nEnter a guess")
 
 		# Check that the input was a letter and account for upper case
@@ -68,10 +74,10 @@ def main():
 				if guess == secretWord[letter]:
 					print("Correct\n")
 					# Replace the - with the letter and add letter to history
-					guessed_word[letter] = guess
+					guessedWord[letter] = guess
 					guessedLetters.append(guess)
 					# if all the - have been replaced, it means they guessed the word
-					if "-" not in guessed_word:
+					if "-" not in guessedWord:
 						print("Congratulations, you win!")
 						print("You correctly guessed the word " + secretWord)	
 						playAgain("Would you like to play again?")
@@ -103,5 +109,3 @@ def playAgain(prompt):
 			print("Invalid input")
 
 main()
-
-
